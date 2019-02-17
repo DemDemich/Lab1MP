@@ -1,0 +1,14 @@
+{
+  "ProjectFilePath": "d:\\LabsUniver\\3_2kurs\\Lab1MP\\Monitor\\Monitor.csproj",
+  "TargetFramework": "netcoreapp2.2",
+  "TagHelpers": [],
+  "Configuration": {
+    "ConfigurationName": "UnsupportedRazor",
+    "LanguageVersion": "1.0",
+    "Extensions": [
+      {
+        "ExtensionName": "UnsupportedRazorExtension"
+      }
+    ]
+  }
+}

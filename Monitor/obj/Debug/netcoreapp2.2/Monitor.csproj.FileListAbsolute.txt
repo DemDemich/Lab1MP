@@ -1,0 +1,11 @@
+D:\LabsUniver\3_2kurs\Lab1MP\Monitor\bin\Debug\netcoreapp2.2\Monitor.deps.json
+D:\LabsUniver\3_2kurs\Lab1MP\Monitor\bin\Debug\netcoreapp2.2\Monitor.runtimeconfig.json
+D:\LabsUniver\3_2kurs\Lab1MP\Monitor\bin\Debug\netcoreapp2.2\Monitor.runtimeconfig.dev.json
+D:\LabsUniver\3_2kurs\Lab1MP\Monitor\bin\Debug\netcoreapp2.2\Monitor.dll
+D:\LabsUniver\3_2kurs\Lab1MP\Monitor\bin\Debug\netcoreapp2.2\Monitor.pdb
+D:\LabsUniver\3_2kurs\Lab1MP\Monitor\obj\Debug\netcoreapp2.2\Monitor.csprojAssemblyReference.cache
+D:\LabsUniver\3_2kurs\Lab1MP\Monitor\obj\Debug\netcoreapp2.2\Monitor.csproj.CoreCompileInputs.cache
+D:\LabsUniver\3_2kurs\Lab1MP\Monitor\obj\Debug\netcoreapp2.2\Monitor.AssemblyInfoInputs.cache
+D:\LabsUniver\3_2kurs\Lab1MP\Monitor\obj\Debug\netcoreapp2.2\Monitor.AssemblyInfo.cs
+D:\LabsUniver\3_2kurs\Lab1MP\Monitor\obj\Debug\netcoreapp2.2\Monitor.dll
+D:\LabsUniver\3_2kurs\Lab1MP\Monitor\obj\Debug\netcoreapp2.2\Monitor.pdb
