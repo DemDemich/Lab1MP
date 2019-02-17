@@ -30,23 +30,26 @@ namespace Monitor
     }
     class Program
     {
-        [DllImport("kernel32.dll")] 
+        [DllImport("kernel32.dll")]
         public static extern IntPtr GetStdHandle(int nStdHandle);
         [DllImport("kernel32.dll", SetLastError=true)]
         public static extern bool SetConsoleTextAttribute(IntPtr hConsoleOutput, CharacterAttributes wAttributes);
         static void Main(string[] args)
         {
+
             IntPtr hOut = GetStdHandle(-11);
             SetConsoleTextAttribute(hOut, CharacterAttributes.FOREGROUND_GREEN);
+            Console.SetCursorPosition(0,3);
+            Console.Write("Horse1");
+            Console.SetCursorPosition(0,4);
             Console.Write("[");
-            Console.SetCursorPosition(100,0);
+            Console.SetCursorPosition(100,4);
             Console.Write("]");
             SetConsoleTextAttribute(hOut, CharacterAttributes.BACKGROUND_GREEN);
-            Console.SetCursorPosition(1,0);
+            Console.SetCursorPosition(1,4);
             Console.Write("#");
             Process[] allP = Process.GetProcesses();
             List<Process> horseList = new List<Process>();
-            
             foreach (var item in allP)
             {
                 if(item.MainWindowTitle.Contains("Horse"))
@@ -62,7 +65,7 @@ namespace Monitor
                     horsePoint.Add(hrAccessor.ReadInt32(i));
                 }
                 break;
-            }  
+            }
 
             Console.ReadLine();
         }
