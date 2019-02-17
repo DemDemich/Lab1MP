@@ -37,9 +37,13 @@ namespace Monitor
         static void Main(string[] args)
         {
             IntPtr hOut = GetStdHandle(-11);
+            SetConsoleTextAttribute(hOut, CharacterAttributes.FOREGROUND_GREEN);
+            Console.Write("[");
+            Console.SetCursorPosition(100,0);
+            Console.Write("]");
             SetConsoleTextAttribute(hOut, CharacterAttributes.BACKGROUND_GREEN);
-            Console.SetCursorPosition(1,1);
-            Console.Write(" ");
+            Console.SetCursorPosition(1,0);
+            Console.Write("#");
             Process[] allP = Process.GetProcesses();
             List<Process> horseList = new List<Process>();
             
