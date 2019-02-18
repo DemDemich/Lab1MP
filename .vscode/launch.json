@@ -14,7 +14,19 @@
             "cwd": "${workspaceFolder}/Monitor",
             "console": "externalTerminal",
             "stopAtEntry": false,
-            "internalConsoleOptions": "openOnSessionStart"
+            "internalConsoleOptions": "neverOpen"
+        },
+        {
+            "name": ".HORSE",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/Horse/bin/Debug/netcoreapp2.2/Horse.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Horse",
+            "console": "externalTerminal",
+            "stopAtEntry": false,
+            "internalConsoleOptions": "neverOpen"
         },
         {
             "name": ".NET Core Attach",

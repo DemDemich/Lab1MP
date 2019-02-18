@@ -1,0 +1,11 @@
+C:\Program Files (x86)\Labs\3_2sem\Lab1MP\Horse\obj\Debug\netcoreapp2.2\Horse.csprojAssemblyReference.cache
+C:\Program Files (x86)\Labs\3_2sem\Lab1MP\Horse\obj\Debug\netcoreapp2.2\Horse.csproj.CoreCompileInputs.cache
+C:\Program Files (x86)\Labs\3_2sem\Lab1MP\Horse\obj\Debug\netcoreapp2.2\Horse.AssemblyInfoInputs.cache
+C:\Program Files (x86)\Labs\3_2sem\Lab1MP\Horse\obj\Debug\netcoreapp2.2\Horse.AssemblyInfo.cs
+C:\Program Files (x86)\Labs\3_2sem\Lab1MP\Horse\bin\Debug\netcoreapp2.2\Horse.deps.json
+C:\Program Files (x86)\Labs\3_2sem\Lab1MP\Horse\bin\Debug\netcoreapp2.2\Horse.runtimeconfig.json
+C:\Program Files (x86)\Labs\3_2sem\Lab1MP\Horse\bin\Debug\netcoreapp2.2\Horse.runtimeconfig.dev.json
+C:\Program Files (x86)\Labs\3_2sem\Lab1MP\Horse\bin\Debug\netcoreapp2.2\Horse.dll
+C:\Program Files (x86)\Labs\3_2sem\Lab1MP\Horse\bin\Debug\netcoreapp2.2\Horse.pdb
+C:\Program Files (x86)\Labs\3_2sem\Lab1MP\Horse\obj\Debug\netcoreapp2.2\Horse.dll
+C:\Program Files (x86)\Labs\3_2sem\Lab1MP\Horse\obj\Debug\netcoreapp2.2\Horse.pdb

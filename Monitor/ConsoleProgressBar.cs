@@ -72,7 +72,7 @@ namespace Monitor
         public void ProgressBarMove(int newPosLeft)
         {
             SetConsoleTextAttribute(ConsoleHandle, CharacterAttributes.FOREGROUND_GREEN);
-            CurrentPosLeft = CurrentPosLeft + (newPosLeft - CurrentPosLeft) - 1;
+            CurrentPosLeft += (newPosLeft - CurrentPosLeft) - 1;
             Console.SetCursorPosition(CurrentPosLeft, CurrentPosTop+1);
             Console.Write("#");
         }

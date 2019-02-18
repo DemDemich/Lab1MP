@@ -14,18 +14,16 @@ namespace Monitor
     {
         static void Main(string[] args)
         {
-            ProgressBarCreator pg = new ProgressBarCreator(2);
+            ProgressBarCreator pg = new ProgressBarCreator(4);
             pg.CreateProgressBars();
             pg.ProgressBarList[1].ProgressBarMove(2);
             pg.ProgressBarList[1].ProgressBarMove(3);
-            Process[] allP = Process.GetProcesses();
-            List<Process> horseList = new List<Process>();
-            foreach (var item in allP)
-            {
-                if(item.MainWindowTitle.Contains("Horse"))
-                    horseList.Add(item);
-            }
-            var mmf = MemoryMappedFile.CreateOrOpen("horseRide",3);
+            /*var mmfHorse = MemoryMappedFile.CreateOrOpen("horseCount",3);
+            var horseAccessor = mmfHorse.CreateViewAccessor();
+            int horseCount = horseAccessor.ReadInt32(1);
+            horseAccessor.Dispose();
+            mmfHorse.Dispose();*/
+            var mmf = MemoryMappedFile.CreateOrOpen("horseRide", 3);
             var hrAccessor = mmf.CreateViewAccessor();
             List<int> horsePoint = new List<int>();
             while (true)
