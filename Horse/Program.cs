@@ -2,21 +2,20 @@
 using System.Threading;
 using System.IO.MemoryMappedFiles;
 using System.Text;
+using System.Diagnostics;
 namespace Horse
 {
     class Program
     {
         static void Main(string[] args)
         {
-            var mmfHorse = MemoryMappedFile.CreateOrOpen("horseTest",50);
-            var horseAccessor = mmfHorse.CreateViewAccessor();
-            var h = "Horse1";
-            byte[] bytes = ASCIIEncoding.ASCII.GetBytes(h);
-            horseAccessor.WriteArray(0, bytes, 0, bytes.Length);
-            //horseAccessor.WriteArray(h.Length+1,"Horse2",0,"Horse1".Length);
-            bytes = new byte[h.Length];
-            horseAccessor.ReadArray(0,bytes,0,bytes.Length);
-            System.Console.WriteLine(ASCIIEncoding.ASCII.GetString(bytes));
+            int horseCount = 3; //кол-во лошадей
+            var mmfArbitr = MemoryMappedFile.CreateOrOpen("horseTest", horseCount + 1);
+            var arbitrAccessor = mmfArbitr.CreateViewAccessor(0,0);
+            arbitrAccessor.Write(0,(sbyte)horseCount);
+            for (int i = 1; i < horseCount + 1; i++)
+                arbitrAccessor.Write(i, (sbyte)i);
+            
             Console.ReadLine();
         }
     }

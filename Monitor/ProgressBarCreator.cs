@@ -32,11 +32,12 @@ namespace Monitor
         }
         public void CreateProgressBars()
         {
+            int i = 1;
             foreach (var item in l_cpg)
             {
                 SetConsoleTextAttribute(item.ConsoleHandle, CharacterAttributes.FOREGROUND_GREEN);
                 Console.SetCursorPosition(item.CurrentPosLeft,item.CurrentPosTop);
-                Console.Write("Horse");
+                Console.Write($"Horse{i++}");
                 Console.SetCursorPosition(item.CurrentPosLeft,item.CurrentPosTop+1);
                 Console.Write("[");
                 Console.SetCursorPosition(item.MaxLeftPos, item.CurrentPosTop+1);

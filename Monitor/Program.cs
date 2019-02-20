@@ -14,27 +14,27 @@ namespace Monitor
     {
         static void Main(string[] args)
         {
-            ProgressBarCreator pg = new ProgressBarCreator(4);
+
+            ProgressBarCreator pg = new ProgressBarCreator(2); //создание кол-ва прогрессбаров
             pg.CreateProgressBars();
-            pg.ProgressBarList[1].ProgressBarMove(2);
-            pg.ProgressBarList[1].ProgressBarMove(3);
-            /*var mmfHorse = MemoryMappedFile.CreateOrOpen("horseCount",3);
-            var horseAccessor = mmfHorse.CreateViewAccessor();
-            int horseCount = horseAccessor.ReadInt32(1);
-            horseAccessor.Dispose();
-            mmfHorse.Dispose();*/
+            //pg.ProgressBarList[1].ProgressBarMove(2);
+            //pg.ProgressBarList[1].ProgressBarMove(3);
             var mmf = MemoryMappedFile.CreateOrOpen("horseRide", 3);
             var hrAccessor = mmf.CreateViewAccessor();
-            List<int> horsePoint = new List<int>();
-            while (true)
+            List<sbyte> horsePoint = new List<sbyte>();
+            for (int i = 2; i < 100; i++)
+            {
+                pg.ProgressBarList[1].ProgressBarMove(i);
+                Thread.Sleep(100);
+            }
+            /* while (true)
             {
                 for (int i = 0; i < 3; i++)
                 {
-                    horsePoint.Add(hrAccessor.ReadInt32(i));
+                    horsePoint.Add(hrAccessor.ReadSByte(i));
                 }
                 break;
-            }
-
+            }*/
             Console.ReadLine();
         }
     }

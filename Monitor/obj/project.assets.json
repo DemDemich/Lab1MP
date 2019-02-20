@@ -477,7 +477,7 @@
       ]
     },
     "Microsoft.NETCore.DotNetAppHost/2.2.0": {
-      "sha512": "OK/H8p9Ig6mLMITjXJ4VOewrJg/TU+dAPHE4BdMWMv+8COzBehf7XF1+DofKkmqdHpO2cJoS5Sc9PEZ6PKCbsg==",
+      "sha512": "qIrVLupwT2NYTrf7KM7Nh+mJr36V5MITVRjyGOByVVCwGmQgQmI/6bjZYQv+QdExi4Cm87eCKJX9FdT6nc00Xg==",
       "type": "package",
       "path": "microsoft.netcore.dotnetapphost/2.2.0",
       "files": [
@@ -686,23 +686,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dadaa\\.nuget\\packages\\": {},
+    "C:\\Users\\koren\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Program Files (x86)\\Labs\\3_2sem\\Lab1MP\\Monitor\\Monitor.csproj",
+      "projectUniqueName": "d:\\LabsUniver\\3_2kurs\\Lab1MP\\Monitor\\Monitor.csproj",
       "projectName": "Monitor",
-      "projectPath": "c:\\Program Files (x86)\\Labs\\3_2sem\\Lab1MP\\Monitor\\Monitor.csproj",
-      "packagesPath": "C:\\Users\\dadaa\\.nuget\\packages\\",
-      "outputPath": "c:\\Program Files (x86)\\Labs\\3_2sem\\Lab1MP\\Monitor\\obj\\",
+      "projectPath": "d:\\LabsUniver\\3_2kurs\\Lab1MP\\Monitor\\Monitor.csproj",
+      "packagesPath": "C:\\Users\\koren\\.nuget\\packages\\",
+      "outputPath": "d:\\LabsUniver\\3_2kurs\\Lab1MP\\Monitor\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\dadaa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\koren\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

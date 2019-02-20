@@ -7,8 +7,8 @@
             "type": "process",
             "args": [
                 "build",
-                //"${workspaceFolder}/Monitor/Monitor.csproj"
-                "${workspaceFolder}/Horse/Horse.csproj"
+                "${workspaceFolder}/Monitor/Monitor.csproj"
+                //"${workspaceFolder}/Horse/Horse.csproj"
             ],
             "problemMatcher": "$msCompile"
         }
