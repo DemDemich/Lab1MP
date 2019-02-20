@@ -1,0 +1,7 @@
+D:\LabsUniver\3_2kurs\Monitor\Monitor\bin\Debug\Monitor.exe.config
+D:\LabsUniver\3_2kurs\Monitor\Monitor\bin\Debug\Monitor.exe
+D:\LabsUniver\3_2kurs\Monitor\Monitor\bin\Debug\Monitor.pdb
+D:\LabsUniver\3_2kurs\Monitor\Monitor\obj\Debug\Monitor.csprojResolveAssemblyReference.cache
+D:\LabsUniver\3_2kurs\Monitor\Monitor\obj\Debug\Monitor.csproj.CoreCompileInputs.cache
+D:\LabsUniver\3_2kurs\Monitor\Monitor\obj\Debug\Monitor.exe
+D:\LabsUniver\3_2kurs\Monitor\Monitor\obj\Debug\Monitor.pdb

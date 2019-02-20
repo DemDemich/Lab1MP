@@ -1,0 +1,7 @@
+D:\LabsUniver\3_2kurs\Arbitr\Arbitr\bin\Debug\Arbitr.exe.config
+D:\LabsUniver\3_2kurs\Arbitr\Arbitr\bin\Debug\Arbitr.exe
+D:\LabsUniver\3_2kurs\Arbitr\Arbitr\bin\Debug\Arbitr.pdb
+D:\LabsUniver\3_2kurs\Arbitr\Arbitr\obj\Debug\Arbitr.csprojResolveAssemblyReference.cache
+D:\LabsUniver\3_2kurs\Arbitr\Arbitr\obj\Debug\Arbitr.csproj.CoreCompileInputs.cache
+D:\LabsUniver\3_2kurs\Arbitr\Arbitr\obj\Debug\Arbitr.exe
+D:\LabsUniver\3_2kurs\Arbitr\Arbitr\obj\Debug\Arbitr.pdb
