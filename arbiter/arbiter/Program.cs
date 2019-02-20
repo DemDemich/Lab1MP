@@ -44,7 +44,7 @@ namespace arbiter
                 try
                 {
                     Console.Write("чтобы начать гонку введите 1 - ");
-                    Console.Write("чтобы завершить гонку нажмите 0 -    ");
+                    Console.Write("чтобы завершить гонку нажмите 0 - ");
                     int d = int.Parse(Console.ReadLine());
                     if (d== 1)
                     {
