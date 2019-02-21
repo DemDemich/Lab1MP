@@ -4,94 +4,76 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
-using System.IO.MemoryMappedFiles;
 using System.Diagnostics;
-namespace Horse
+using System.IO.MemoryMappedFiles;
+
+namespace arbiter
 {
     class Program
     {
         static void Main(string[] args)
         {
-            var mmfHorse = MemoryMappedFile.CreateOrOpen("horseTest", 1); //файлик
-            var horseAccessor = mmfHorse.CreateViewAccessor(); //писатель с глазами в файлик
-            int Number = 0; //Номер лошадки
-            bool end = false; //Флаг того дошла ли какая либо лошадка до конца
-            int EndPos = 100; //Финальное расстояние
-            //ОПРДЕЛЕНИЕ НОМЕРА
-            try
-            {
-                Number = Convert.ToInt32(args[0]);
-            }
-            catch
-            {
-                Console.WriteLine("Номер лошади не передан!");
-                Console.ReadLine();
-                Environment.Exit(0);
-            }
-            //Кол-во лошадок
-            int C = 0;
-            try
-            {
-                C = Convert.ToInt32(args[1]);
-            }
-            catch
-            {
-                Console.WriteLine("Кол-во лошадей не передано!");
-                Console.ReadLine();
-                Environment.Exit(0);
-            }
-            //PID арбитр
-            int ArbPID = 0;
-            try
-            {
-                 ArbPID = Convert.ToInt32(args[2]);
-            }
-            catch
-            {
-                Console.WriteLine("Арбитра нет!");
-                Console.ReadLine();
-                Environment.Exit(0);
-            }
-            Semaphore ar;
-            if (!Semaphore.TryOpenExisting("ar", out ar))
-            {
-                Console.WriteLine("Семафора нет!");
-                Console.ReadLine();
-                Environment.Exit(0);
-            }
-            int i = 0; //Бег лошадки
-                       //ЛОШАДКА БЕЖИТ
-
-            ar.WaitOne();
-            while (!end) 
-            {
+            int horseCount;
+            int len;
+            while (true)
                 try
                 {
-                    Process.GetProcessById(ArbPID);
+                    Console.Write("Введите количество участников - ");
+                    horseCount = int.Parse(Console.ReadLine());
+                    Console.Write("Введите длину поля - ");
+                    len = int.Parse(Console.ReadLine());
+                    break;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Ошибка!");
+                }
+            //Console.WriteLine(Process.Start(@"D:\Учеба\test\test\bin\Debug\test.exe").Id);
+            //Console.WriteLine(Process.Start(@"monitor.exe",horseCount.ToString(), len.ToString()).Id); // запуск монитора и передача ему начальных аргументов
+            string monitor_args =  horseCount.ToString() + " " + len.ToString();
+            Console.WriteLine(Process.Start(@"C:\Git\Lab1MP\Monitor\Monitor\bin\Debug\Monitor.exe", monitor_args).Id);
+            var mmfArbitr = MemoryMappedFile.CreateOrOpen("horseTest", horseCount + 1);
+            var arbitrAccessor = mmfArbitr.CreateViewAccessor(0, 0);
+            arbitrAccessor.Write(0, (sbyte)horseCount);
+            Semaphore ar = new Semaphore(0, horseCount, "ar");
+            Mutex mtx = new Mutex(false,"horseMMF");
+            List<int> ids = new List<int>();
+            for (int i = 0; i < horseCount; i++) //запускаем лошадей
+            {
+                ids.Add(Process.Start(@"C:\Git\Lab1MP\Horse\Horse\bin\Debug\Horse.exe",i.ToString() + " " + horseCount.ToString() + " " + Process.GetCurrentProcess().Id).Id);//создание лошади и передача ему его номера
+                //Console.WriteLine("HORSE - {0}", ids[i]);
+                //Console.WriteLine(Process.Start(@"horse.exe",i.toString(),horseCount.toSring()).Id); 
+            }
+            while (true)
+                try
+                {
+                    Console.Write("Чтобы начать гонку введите 1 - ");
+                    Console.Write("Чтобы завершить гонку нажмите 0 - ");
+                    int d = int.Parse(Console.ReadLine());
+                    if (d == 1)
+                    {
+                        Console.WriteLine(ar.Release());
+                        break;
+                    }
+                    else if (d == 0)
+                    {
+                        foreach (var item in ids)
+                        {
+                            Process.GetProcessById(item).Kill();
+
+                        }
+                        break;
+                    }
                 }
                 catch
                 {
-                    Console.WriteLine("Арбитра нет!");
-                    Console.ReadLine();
-                    Environment.Exit(0);
+                    Console.WriteLine("Ошибка!");
+
                 }
-                for (int j = 1; j <= C; j++) //Проверяем не добежал ли кто то до финиша
-                {
-                    if (horseAccessor.ReadSByte(i) >= EndPos)
-                    {
-                        Console.WriteLine("Кто то добежал до финиша раньше");
-                        Console.ReadLine();
-                        Environment.Exit(0);
-                    }
-                }
-                horseAccessor.Write(Number, (sbyte)(horseAccessor.ReadSByte(Number)+1));//Увеличиваем счетчик бега
-                if (horseAccessor.ReadSByte(Number) >= EndPos)
-                {
-                    Console.WriteLine("Я на фишине");
-                    Console.ReadLine();
-                    Environment.Exit(0);
-                }
-            }
+            Process.GetCurrentProcess().Close();
+            Console.WriteLine(Process.GetCurrentProcess().Id);
+
+            Console.ReadKey();
         }
     }
 }

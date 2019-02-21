@@ -1,6 +1,0 @@
-C:\Git\Lab1MP\Horse\Horse\bin\Debug\Horse.exe.config
-C:\Git\Lab1MP\Horse\Horse\bin\Debug\Horse.exe
-C:\Git\Lab1MP\Horse\Horse\bin\Debug\Horse.pdb
-C:\Git\Lab1MP\Horse\Horse\obj\Debug\Horse.csproj.CoreCompileInputs.cache
-C:\Git\Lab1MP\Horse\Horse\obj\Debug\Horse.exe
-C:\Git\Lab1MP\Horse\Horse\obj\Debug\Horse.pdb
