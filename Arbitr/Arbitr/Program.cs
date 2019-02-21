@@ -35,7 +35,7 @@ namespace arbiter
             var mmfArbitr = MemoryMappedFile.CreateOrOpen("horseTest", horseCount + 1);
             var arbitrAccessor = mmfArbitr.CreateViewAccessor(0, 0);
             arbitrAccessor.Write(0, (sbyte)horseCount);
-            Semaphore ar = new Semaphore(horseCount, horseCount, "ar");
+            Semaphore ar = new Semaphore(0, horseCount, "ar");
             Mutex mtx = new Mutex(false,"horseMMF");
             List<int> ids = new List<int>();
             for (int i = 0; i < horseCount; i++) //запускаем лошадей
@@ -52,7 +52,7 @@ namespace arbiter
                     int d = int.Parse(Console.ReadLine());
                     if (d == 1)
                     {
-                        ar.Release();
+                        Console.WriteLine(ar.Release());
                         break;
                     }
                     else if (d == 0)
@@ -65,13 +65,14 @@ namespace arbiter
                         break;
                     }
                 }
-                catch (Exception e)
+                catch
                 {
                     Console.WriteLine("Ошибка!");
 
                 }
             Process.GetCurrentProcess().Close();
             Console.WriteLine(Process.GetCurrentProcess().Id);
+
             Console.ReadKey();
         }
     }

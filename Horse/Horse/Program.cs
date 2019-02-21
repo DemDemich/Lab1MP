@@ -4,65 +4,94 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
-using System.Diagnostics;
 using System.IO.MemoryMappedFiles;
-
+using System.Diagnostics;
 namespace Horse
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(Process.GetCurrentProcess().Id);
-            foreach (var item in args)
-            {
-                Console.WriteLine(item.ToString());
-            }
-            Console.ReadKey();
-            /*
-            int Number = 0; //Номер лошадки
-            //ОПРДЕЛЕНИЕ НОМЕРА
-            Number = Convert.ToInt32(args[0]) - 1;
-            //Кол-во лошадок
-            int C = Convert.ToInt32(args[1]);
-            var mmfHorse = MemoryMappedFile.CreateOrOpen("horseRide", C); //файлик
+            var mmfHorse = MemoryMappedFile.CreateOrOpen("horseTest", 1); //файлик
             var horseAccessor = mmfHorse.CreateViewAccessor(); //писатель с глазами в файлик
-            
+            int Number = 0; //Номер лошадки
             bool end = false; //Флаг того дошла ли какая либо лошадка до конца
             int EndPos = 100; //Финальное расстояние
-            
-
-            //Semaphore ar = new Semaphore(0, 0); //Пустой семафор
-            Semaphore ar = Semaphore.OpenExisting("ar");
+            //ОПРДЕЛЕНИЕ НОМЕРА
             try
             {
-                ar = Semaphore.OpenExisting("ar"); //Открываем семафор, что то надо с ним делать, хз как оно работает
-                ar.WaitOne();
+                Number = Convert.ToInt32(args[0]);
             }
-            catch (WaitHandleCannotBeOpenedException) //Опа, а семафора то нет!
+            catch
             {
-                //КОНЕЦ ПРОГРАММЫ 
+                Console.WriteLine("Номер лошади не передан!");
+                Console.ReadLine();
+                Environment.Exit(0);
+            }
+            //Кол-во лошадок
+            int C = 0;
+            try
+            {
+                C = Convert.ToInt32(args[1]);
+            }
+            catch
+            {
+                Console.WriteLine("Кол-во лошадей не передано!");
+                Console.ReadLine();
+                Environment.Exit(0);
+            }
+            //PID арбитр
+            int ArbPID = 0;
+            try
+            {
+                 ArbPID = Convert.ToInt32(args[2]);
+            }
+            catch
+            {
+                Console.WriteLine("Арбитра нет!");
+                Console.ReadLine();
+                Environment.Exit(0);
+            }
+            Semaphore ar;
+            if (!Semaphore.TryOpenExisting("ar", out ar))
+            {
+                Console.WriteLine("Семафора нет!");
+                Console.ReadLine();
+                Environment.Exit(0);
             }
             int i = 0; //Бег лошадки
-            Mutex mtx = Mutex.OpenExisting("horseMMF");
-            //ЛОШАДКА БЕЖИТ
-            while (!end)
+                       //ЛОШАДКА БЕЖИТ
+
+            ar.WaitOne();
+            while (!end) 
             {
-                mtx.WaitOne();
+                try
+                {
+                    Process.GetProcessById(ArbPID);
+                }
+                catch
+                {
+                    Console.WriteLine("Арбитра нет!");
+                    Console.ReadLine();
+                    Environment.Exit(0);
+                }
                 for (int j = 1; j <= C; j++) //Проверяем не добежал ли кто то до финиша
                 {
                     if (horseAccessor.ReadSByte(i) >= EndPos)
                     {
-                        //КОНЕЦ ПРОГРАММЫ
+                        Console.WriteLine("Кто то добежал до финиша раньше");
+                        Console.ReadLine();
+                        Environment.Exit(0);
                     }
                 }
-                horseAccessor.Write(Number, (sbyte)(horseAccessor.ReadSByte(Number) + 1));//Увеличиваем счетчик бега
+                horseAccessor.Write(Number, (sbyte)(horseAccessor.ReadSByte(Number)+1));//Увеличиваем счетчик бега
                 if (horseAccessor.ReadSByte(Number) >= EndPos)
                 {
-                    //Конец забега - арбитр должен чекать как то 
+                    Console.WriteLine("Я на фишине");
+                    Console.ReadLine();
+                    Environment.Exit(0);
                 }
-                mtx.ReleaseMutex();
-            }*/
+            }
         }
     }
 }
