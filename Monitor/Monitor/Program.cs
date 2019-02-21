@@ -14,8 +14,8 @@ namespace Monitor
     {
         static void Main(string[] args)
         {
-            int hCount = 3;//int.Parse(args[0]);
-            //Console.Title = $"Длинна поля:{args[1]}";
+            int hCount = int.Parse(args[0]);//int.Parse(args[0]);
+            Console.Title = $"Длинна поля:{args[1]}";
             ProgressBarCreator pg = new ProgressBarCreator(hCount); //создание кол-ва прогрессбаров
             pg.CreateProgressBars();
             var mmf = MemoryMappedFile.CreateOrOpen("horseRide", hCount);
