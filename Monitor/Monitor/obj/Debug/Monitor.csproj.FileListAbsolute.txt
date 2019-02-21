@@ -5,3 +5,10 @@ D:\LabsUniver\3_2kurs\Monitor\Monitor\obj\Debug\Monitor.csprojResolveAssemblyRef
 D:\LabsUniver\3_2kurs\Monitor\Monitor\obj\Debug\Monitor.csproj.CoreCompileInputs.cache
 D:\LabsUniver\3_2kurs\Monitor\Monitor\obj\Debug\Monitor.exe
 D:\LabsUniver\3_2kurs\Monitor\Monitor\obj\Debug\Monitor.pdb
+C:\Program Files (x86)\Labs\3_2sem\Lab1MP\Monitor\Monitor\bin\Debug\Monitor.exe.config
+C:\Program Files (x86)\Labs\3_2sem\Lab1MP\Monitor\Monitor\bin\Debug\Monitor.exe
+C:\Program Files (x86)\Labs\3_2sem\Lab1MP\Monitor\Monitor\bin\Debug\Monitor.pdb
+C:\Program Files (x86)\Labs\3_2sem\Lab1MP\Monitor\Monitor\obj\Debug\Monitor.csprojAssemblyReference.cache
+C:\Program Files (x86)\Labs\3_2sem\Lab1MP\Monitor\Monitor\obj\Debug\Monitor.csproj.CoreCompileInputs.cache
+C:\Program Files (x86)\Labs\3_2sem\Lab1MP\Monitor\Monitor\obj\Debug\Monitor.exe
+C:\Program Files (x86)\Labs\3_2sem\Lab1MP\Monitor\Monitor\obj\Debug\Monitor.pdb

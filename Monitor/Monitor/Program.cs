@@ -14,7 +14,7 @@ namespace Monitor
     {
         static void Main(string[] args)
         {
-            int hCount = 2;//int.Parse(args[0]);
+            int hCount = 3;//int.Parse(args[0]);
             //Console.Title = $"Длинна поля:{args[1]}";
             ProgressBarCreator pg = new ProgressBarCreator(hCount); //создание кол-ва прогрессбаров
             pg.CreateProgressBars();
@@ -22,14 +22,15 @@ namespace Monitor
             var hrAccessor = mmf.CreateViewAccessor();
             List<sbyte> horsePoint = new List<sbyte>();
             List<int> summ = new List<int>();
-            Mutex mtx = Mutex.OpenExisting("horseMMF");
+            //Mutex mtx = Mutex.OpenExisting("horseMMF");
+            //int temp = 1;
             while (true)
             {
                 for (int i = 0; i < hCount; i++)
                 {
                     sbyte temp = hrAccessor.ReadSByte(i);
                     pg.ProgressBarList[i].ProgressBarMove(temp);
-                    //horsePoint.Add(temp);
+                    Thread.Sleep(10);
                 }
             }
             Console.ReadLine();

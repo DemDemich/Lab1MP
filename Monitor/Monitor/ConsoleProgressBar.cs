@@ -10,6 +10,18 @@ using System.Reflection;
 
 namespace Monitor
 {
+    [StructLayout(LayoutKind.Sequential)]
+    public struct COORD
+    {
+        public short X;
+        public short Y;
+
+        public COORD(short X, short Y)
+        {
+            this.X = X;
+            this.Y = Y;
+        }
+    };
     public enum CharacterAttributes
         {
             FOREGROUND_BLUE = 0x0001,
@@ -34,8 +46,13 @@ namespace Monitor
         public static extern IntPtr GetStdHandle(int nStdHandle);
         [DllImport("kernel32.dll", SetLastError=true)]
         public static extern bool SetConsoleTextAttribute(IntPtr hConsoleOutput, CharacterAttributes wAttributes);
+        [DllImport("kernel32.dll", SetLastError = true)]
+        static extern bool WriteConsoleOutputCharacter(IntPtr hConsoleOutput,
+                                        string lpCharacter, uint nLength, COORD dwWriteCoord,
+                                                                        out uint lpNumberOfCharsWritten);
         int i_currentPosTop;
         int i_currentPosLeft;
+        public COORD cords;
         IntPtr hOut;
         const int i_max = 101;
         public ConsoleProgressBar()
@@ -47,6 +64,8 @@ namespace Monitor
             ConsoleHandle = GetStdHandle(-11);
             CurrentPosTop = topPos;
             CurrentPosLeft = 0;
+            cords.Y = (short)CurrentPosTop;
+            cords.X = 0;
         }
         #region Properties
         public int CurrentPosTop
@@ -71,10 +90,26 @@ namespace Monitor
         #endregion
         public void ProgressBarMove(int newPosLeft)
         {
+            uint t;
             SetConsoleTextAttribute(ConsoleHandle, CharacterAttributes.FOREGROUND_GREEN);
-            CurrentPosLeft += (newPosLeft - CurrentPosLeft) - 1;
-            Console.SetCursorPosition(CurrentPosLeft, CurrentPosTop+1);
-            Console.Write("#");
+            cords.X = (short)(newPosLeft - 1);
+            WriteConsoleOutputCharacter(ConsoleHandle, "#", 1, cords, out t);
+        }
+        public void testkvadrat()
+        {
+            uint t;
+            cords.X = 0;
+            cords.Y = 0;
+            WriteConsoleOutputCharacter(ConsoleHandle, "#", 1, cords, out t);
+            cords.X = 0;
+            cords.Y = 1;
+            WriteConsoleOutputCharacter(ConsoleHandle, "#", 1, cords, out t);
+            cords.X = 1;
+            cords.Y = 0;
+            WriteConsoleOutputCharacter(ConsoleHandle, "#", 1, cords, out t);
+            cords.X = 1;
+            cords.Y = 1;
+            WriteConsoleOutputCharacter(ConsoleHandle, "#", 1, cords, out t);
         }
     }
 }
