@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Diagnostics;
 using System.IO.MemoryMappedFiles;
 
 namespace Horse
@@ -12,6 +13,13 @@ namespace Horse
     {
         static void Main(string[] args)
         {
+            Console.WriteLine(Process.GetCurrentProcess().Id);
+            foreach (var item in args)
+            {
+                Console.WriteLine(item.ToString());
+            }
+            Console.ReadKey();
+            /*
             int Number = 0; //Номер лошадки
             //ОПРДЕЛЕНИЕ НОМЕРА
             Number = Convert.ToInt32(args[0]) - 1;
@@ -54,7 +62,7 @@ namespace Horse
                     //Конец забега - арбитр должен чекать как то 
                 }
                 mtx.ReleaseMutex();
-            }
+            }*/
         }
     }
 }

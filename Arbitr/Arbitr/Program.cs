@@ -31,7 +31,7 @@ namespace arbiter
             //Console.WriteLine(Process.Start(@"D:\Учеба\test\test\bin\Debug\test.exe").Id);
             //Console.WriteLine(Process.Start(@"monitor.exe",horseCount.ToString(), len.ToString()).Id); // запуск монитора и передача ему начальных аргументов
             string monitor_args =  horseCount.ToString() + " " + len.ToString();
-            Console.WriteLine(Process.Start(@"D:\LabsUniver\3_2kurs\Monitor\Monitor\bin\Debug\Monitor.exe", monitor_args).Id);
+            Console.WriteLine(Process.Start(@"C:\Git\Lab1MP\Monitor\Monitor\bin\Debug\Monitor.exe", monitor_args).Id);
             var mmfArbitr = MemoryMappedFile.CreateOrOpen("horseTest", horseCount + 1);
             var arbitrAccessor = mmfArbitr.CreateViewAccessor(0, 0);
             arbitrAccessor.Write(0, (sbyte)horseCount);
@@ -40,9 +40,9 @@ namespace arbiter
             List<int> ids = new List<int>();
             for (int i = 0; i < horseCount; i++) //запускаем лошадей
             {
-                ids.Add(Process.Start(@"D:\Учеба\test\test\bin\Debug\test.exe").Id);
-                Console.WriteLine("HORSE - {0}", ids[i]);
-                //Console.WriteLine(Process.Start(@"horse.exe",i.toString(),horseCount.toSring()).Id); //создание лошади и передача ему его номера
+                ids.Add(Process.Start(@"C:\Git\Lab1MP\Horse\Horse\bin\Debug\Horse.exe",i.ToString() + " " + horseCount.ToString() + " " + Process.GetCurrentProcess().Id).Id);//создание лошади и передача ему его номера
+                //Console.WriteLine("HORSE - {0}", ids[i]);
+                //Console.WriteLine(Process.Start(@"horse.exe",i.toString(),horseCount.toSring()).Id); 
             }
             while (true)
                 try
