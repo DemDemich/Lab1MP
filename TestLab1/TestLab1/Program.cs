@@ -6,15 +6,62 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Diagnostics;
 using System.IO.MemoryMappedFiles;
-
+using System.Runtime.InteropServices;
 namespace TestLab1
 {
     class Program
     {
+        [DllImport("Kernel32")]
+        private static extern bool SetConsoleCtrlHandler(SetConsoleCtrlEventHandler handler, bool add);
+        private delegate bool SetConsoleCtrlEventHandler(CtrlType sig);
+
+        private enum CtrlType
+        {
+            CTRL_C_EVENT = 0,
+            CTRL_BREAK_EVENT = 1,
+            CTRL_CLOSE_EVENT = 2,
+            CTRL_LOGOFF_EVENT = 5,
+            CTRL_SHUTDOWN_EVENT = 6
+        }
+        public static List<int> ids;
+        public static int moni;
+        /// <summary>
+        /// Для котроля нажания CTRL+SMTH
+        /// </summary>
+        /// <param name="signal"></param>
+        /// <returns></returns>
+        private static bool Handler(CtrlType signal)
+        {
+            switch (signal)
+            {
+                case CtrlType.CTRL_BREAK_EVENT:
+                    Console.WriteLine("CTRL+BREAK");
+                    return true;
+                case CtrlType.CTRL_C_EVENT:
+                    Console.WriteLine("CTRL+C");
+                    return true;
+                case CtrlType.CTRL_LOGOFF_EVENT:
+                case CtrlType.CTRL_SHUTDOWN_EVENT:
+                case CtrlType.CTRL_CLOSE_EVENT:
+                    Console.WriteLine("Closing");
+                    foreach (var item in ids)
+                    {
+                        Process.GetProcessById(item).Kill();
+                    }
+                    Process.GetProcessById(moni).Kill();
+                    Environment.Exit(0);
+                    return true;
+                default:
+                    return false;
+            }
+        }
         static void Main(string[] args)
         {
-            string path = @"C:\Git\Lab1MP\";
+            
+            string path = @"D:\LabsUniver\3_2kurs\Lab1MP\";
+            //string path = @"C:\Git\Lab1MP\";
             int horseCount;
+            SetConsoleCtrlHandler(Handler, true);
             int len;
             while (true)
                 try
@@ -30,14 +77,14 @@ namespace TestLab1
                     Console.WriteLine("Ошибка!");
                 }
             string monitor_args = horseCount.ToString() + " " + len.ToString();
-            Console.WriteLine(Process.Start(path +  @"Monitor\Monitor\bin\Debug\Monitor.exe", monitor_args).Id);
-            //Process.Start(@"C:\Git\Lab1MP\Horse\Horse\bin\Debug\Horse.exe", "1" + " " + horseCount.ToString() + " " + Process.GetCurrentProcess().Id);
+            moni = Process.Start(path + @"Monitor\Monitor\bin\Debug\Monitor.exe", monitor_args).Id;
+            Console.WriteLine(moni);
             var mmfArbitr = MemoryMappedFile.CreateOrOpen("horseMMF", horseCount + 1);
             var arbitrAccessor = mmfArbitr.CreateViewAccessor(0, 0);
             arbitrAccessor.Write(0, (sbyte)horseCount);
             Semaphore ar = new Semaphore(0, horseCount+1, "ar");
             Mutex mtx = new Mutex(false, "mtx");
-            List<int> ids = new List<int>();
+            ids = new List<int>();
             for (int i = 0; i < horseCount; i++) //запускаем лошадей
             {
                 ids.Add(Process.Start(path +  @"Horse\Horse\bin\Debug\Horse.exe", i.ToString() + " " + horseCount.ToString() + " " + Process.GetCurrentProcess().Id).Id);//создание лошади и передача ему его номера

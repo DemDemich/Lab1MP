@@ -17,7 +17,6 @@ namespace Horse
             int Number = 0; //Номер лошадки
             bool end = false; //Флаг того дошла ли какая либо лошадка до конца
             int EndPos = 100; //Финальное расстояние
-
             Console.Title = args[0];
             //ОПРДЕЛЕНИЕ НОМЕРА
             try
@@ -61,20 +60,12 @@ namespace Horse
                 Console.ReadLine();
                 Environment.Exit(0);
             }
-            ar.WaitOne();
-            Mutex mtx;
-            Mutex mtx2;
-            //Mutex.TryOpenExisting("horseMMF",out mtx);
-            //Mutex.TryOpenExisting("horseStart", out mtx2);
-
-            int i = 0; //Бег лошадки
-            //ЛОШАДКА БЕЖИТ
-            while (!end)
+            while (!ar.WaitOne())
             {
-                //mtx.WaitOne();
                 try
                 {
                     ArbPID = Convert.ToInt32(args[2]);
+                    Process.GetProcessById(ArbPID);
                 }
                 catch
                 {
@@ -82,7 +73,32 @@ namespace Horse
                     Console.ReadLine();
                     Environment.Exit(0);
                 }
-                for (int j = 1; j <= C; j++) //Проверяем не добежал ли кто то до финиша
+            }
+            Mutex mtx;
+            Mutex mtx2;
+            Random rand = new Random();
+            Mutex.TryOpenExisting("mtx",out mtx);
+            //Mutex.TryOpenExisting("horseStart", out mtx2);
+
+            int i = 0; //Бег лошадки
+            //ЛОШАДКА БЕЖИТ
+
+            //TODO: Сделать так чтобы лошадки не стопались когда приходит хотя бы 1 из них
+            while (!end)
+            {
+                mtx.WaitOne();
+                try
+                {
+                    ArbPID = Convert.ToInt32(args[2]);
+                    Process.GetProcessById(ArbPID);
+                }
+                catch
+                {
+                    Console.WriteLine("Арбитра нет!");
+                    Console.ReadLine();
+                    Environment.Exit(0);
+                }
+                /*for (int j = 1; j <= C; j++) //Проверяем не добежал ли кто то до финиша
                 {
                     if (horseAccessor.ReadSByte(i) >= EndPos)
                     {
@@ -90,16 +106,16 @@ namespace Horse
                         Console.ReadLine();
                         Environment.Exit(0);
                     }
-                }
-                horseAccessor.Write(Number, (sbyte)(horseAccessor.ReadSByte(Number) + new Random().Next(1, 10)));//Увеличиваем счетчик бега
+                }*/
+                horseAccessor.Write(Number, (sbyte)(horseAccessor.ReadSByte(Number) + 1));//Увеличиваем счетчик бега
                 if (horseAccessor.ReadSByte(Number) >= EndPos)
                 {
                     Console.WriteLine("Я на фишине");
                     Console.ReadLine();
                     Environment.Exit(0);
                 }
-                Thread.Sleep(new Random().Next(300, 1000));
-                //mtx.ReleaseMutex();
+                Thread.Sleep(new Random().Next(10, 12));
+                mtx.ReleaseMutex();
             }
         }
     }

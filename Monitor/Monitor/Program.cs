@@ -36,6 +36,7 @@ namespace Monitor
             ar.WaitOne();
             //Mutex mtx = Mutex.OpenExisting("horseMMF");
             //int temp = 1;
+            //TODO: пофиксить баг с отображением 1+ прогрессбара
             while (true)
             {
                 for (int i = 0; i < hCount; i++)
