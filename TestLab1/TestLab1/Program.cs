@@ -13,6 +13,7 @@ namespace TestLab1
     {
         static void Main(string[] args)
         {
+            string path = @"C:\Git\Lab1MP\";
             int horseCount;
             int len;
             while (true)
@@ -28,12 +29,10 @@ namespace TestLab1
                 {
                     Console.WriteLine("Ошибка!");
                 }
-            //Console.WriteLine(Process.Start(@"D:\Учеба\test\test\bin\Debug\test.exe").Id);
-            //Console.WriteLine(Process.Start(@"monitor.exe",horseCount.ToString(), len.ToString()).Id); // запуск монитора и передача ему начальных аргументов
             string monitor_args = horseCount.ToString() + " " + len.ToString();
-            Console.WriteLine(Process.Start(@"D:\LabsUniver\3_2kurs\Lab1MP\Monitor\Monitor\bin\Debug\Monitor.exe", monitor_args).Id);
-            Process.Start(@"D:\LabsUniver\3_2kurs\Lab1MP\Horse\Horse\bin\Debug\Horse.exe", "1" + " " + horseCount.ToString() + " " + Process.GetCurrentProcess().Id);
-            /*var mmfArbitr = MemoryMappedFile.CreateOrOpen("horseTest", horseCount + 1);
+            Console.WriteLine(Process.Start(path +  @"Monitor\Monitor\bin\Debug\Monitor.exe", monitor_args).Id);
+            //Process.Start(@"C:\Git\Lab1MP\Horse\Horse\bin\Debug\Horse.exe", "1" + " " + horseCount.ToString() + " " + Process.GetCurrentProcess().Id);
+            var mmfArbitr = MemoryMappedFile.CreateOrOpen("horseTest", horseCount + 1);
             var arbitrAccessor = mmfArbitr.CreateViewAccessor(0, 0);
             arbitrAccessor.Write(0, (sbyte)horseCount);
             Semaphore ar = new Semaphore(0, horseCount, "ar");
@@ -41,7 +40,7 @@ namespace TestLab1
             List<int> ids = new List<int>();
             for (int i = 0; i < horseCount; i++) //запускаем лошадей
             {
-                ids.Add(Process.Start(@"D:\LabsUniver\3_2kurs\Lab1MP\Horse\Horse\bin\Debug\Horse.exe", i.ToString() + " " + horseCount.ToString() + " " + Process.GetCurrentProcess().Id).Id);//создание лошади и передача ему его номера
+                ids.Add(Process.Start(path +  @"Horse\Horse\bin\Debug\Horse.exe", i.ToString() + " " + horseCount.ToString() + " " + Process.GetCurrentProcess().Id).Id);//создание лошади и передача ему его номера
                 //Console.WriteLine("HORSE - {0}", ids[i]);
                 //Console.WriteLine(Process.Start(@"horse.exe",i.toString(),horseCount.toSring()).Id); 
             }
@@ -73,7 +72,7 @@ namespace TestLab1
                 }
             Process.GetCurrentProcess().Close();
             Console.WriteLine(Process.GetCurrentProcess().Id);
-            */
+            
             Console.ReadKey();
         }
     }
