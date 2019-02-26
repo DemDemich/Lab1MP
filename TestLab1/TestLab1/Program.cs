@@ -7,7 +7,7 @@ using System.Threading;
 using System.Diagnostics;
 using System.IO.MemoryMappedFiles;
 
-namespace arbiter
+namespace TestLab1
 {
     class Program
     {
@@ -31,7 +31,7 @@ namespace arbiter
             //Console.WriteLine(Process.Start(@"D:\Учеба\test\test\bin\Debug\test.exe").Id);
             //Console.WriteLine(Process.Start(@"monitor.exe",horseCount.ToString(), len.ToString()).Id); // запуск монитора и передача ему начальных аргументов
             string monitor_args = horseCount.ToString() + " " + len.ToString();
-            //Console.WriteLine(Process.Start(@"D:\LabsUniver\3_2kurs\Lab1MP\Monitor\Monitor\bin\Debug\Monitor.exe", monitor_args).Id);
+            Console.WriteLine(Process.Start(@"D:\LabsUniver\3_2kurs\Lab1MP\Monitor\Monitor\bin\Debug\Monitor.exe", monitor_args).Id);
             Process.Start(@"D:\LabsUniver\3_2kurs\Lab1MP\Horse\Horse\bin\Debug\Horse.exe", "1" + " " + horseCount.ToString() + " " + Process.GetCurrentProcess().Id);
             /*var mmfArbitr = MemoryMappedFile.CreateOrOpen("horseTest", horseCount + 1);
             var arbitrAccessor = mmfArbitr.CreateViewAccessor(0, 0);

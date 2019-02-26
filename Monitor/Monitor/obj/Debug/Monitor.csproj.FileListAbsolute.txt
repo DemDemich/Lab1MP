@@ -19,3 +19,10 @@ C:\Git\Lab1MP\Monitor\Monitor\obj\Debug\Monitor.csprojResolveAssemblyReference.c
 C:\Git\Lab1MP\Monitor\Monitor\obj\Debug\Monitor.csproj.CoreCompileInputs.cache
 C:\Git\Lab1MP\Monitor\Monitor\obj\Debug\Monitor.exe
 C:\Git\Lab1MP\Monitor\Monitor\obj\Debug\Monitor.pdb
+D:\LabsUniver\3_2kurs\Lab1MP\Monitor\Monitor\bin\Debug\Monitor.exe.config
+D:\LabsUniver\3_2kurs\Lab1MP\Monitor\Monitor\bin\Debug\Monitor.exe
+D:\LabsUniver\3_2kurs\Lab1MP\Monitor\Monitor\bin\Debug\Monitor.pdb
+D:\LabsUniver\3_2kurs\Lab1MP\Monitor\Monitor\obj\Debug\Monitor.csprojResolveAssemblyReference.cache
+D:\LabsUniver\3_2kurs\Lab1MP\Monitor\Monitor\obj\Debug\Monitor.csproj.CoreCompileInputs.cache
+D:\LabsUniver\3_2kurs\Lab1MP\Monitor\Monitor\obj\Debug\Monitor.exe
+D:\LabsUniver\3_2kurs\Lab1MP\Monitor\Monitor\obj\Debug\Monitor.pdb
