@@ -32,17 +32,17 @@ namespace TestLab1
             string monitor_args = horseCount.ToString() + " " + len.ToString();
             Console.WriteLine(Process.Start(path +  @"Monitor\Monitor\bin\Debug\Monitor.exe", monitor_args).Id);
             //Process.Start(@"C:\Git\Lab1MP\Horse\Horse\bin\Debug\Horse.exe", "1" + " " + horseCount.ToString() + " " + Process.GetCurrentProcess().Id);
-            var mmfArbitr = MemoryMappedFile.CreateOrOpen("horseTest", horseCount + 1);
+            var mmfArbitr = MemoryMappedFile.CreateOrOpen("horseMMF", horseCount + 1);
             var arbitrAccessor = mmfArbitr.CreateViewAccessor(0, 0);
             arbitrAccessor.Write(0, (sbyte)horseCount);
-            Semaphore ar = new Semaphore(0, horseCount, "ar");
-            Mutex mtx = new Mutex(false, "horseMMF");
+            Semaphore ar = new Semaphore(0, horseCount+1, "ar");
+            Mutex mtx = new Mutex(false, "mtx");
             List<int> ids = new List<int>();
             for (int i = 0; i < horseCount; i++) //запускаем лошадей
             {
                 ids.Add(Process.Start(path +  @"Horse\Horse\bin\Debug\Horse.exe", i.ToString() + " " + horseCount.ToString() + " " + Process.GetCurrentProcess().Id).Id);//создание лошади и передача ему его номера
                 //Console.WriteLine("HORSE - {0}", ids[i]);
-                //Console.WriteLine(Process.Start(@"horse.exe",i.toString(),horseCount.toSring()).Id); 
+                //Console.WriteLine(Process.Start(@"horse.exe",i.toString(),horseCount.toSring()).Id);
             }
             while (true)
                 try
@@ -52,13 +52,13 @@ namespace TestLab1
                     int d = int.Parse(Console.ReadLine());
                     if (d == 1)
                     {
-                        Console.WriteLine(ar.Release());
+                        ar.Release(horseCount+1);
                         break;
                     }
                     else if (d == 0)
                     {
                         foreach (var item in ids)
-                        {
+                        {   
                             Process.GetProcessById(item).Kill();
 
                         }
