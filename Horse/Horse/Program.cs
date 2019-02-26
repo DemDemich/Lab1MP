@@ -64,14 +64,14 @@ namespace Horse
             ar.WaitOne();
             Mutex mtx;
             Mutex mtx2;
-            //Mutex.TryOpenExisting("horseMMF",out mtx);
+            Mutex.TryOpenExisting("mtx",out mtx);
             //Mutex.TryOpenExisting("horseStart", out mtx2);
 
             int i = 0; //Бег лошадки
             //ЛОШАДКА БЕЖИТ
             while (!end)
             {
-                //mtx.WaitOne();
+                mtx.WaitOne();
                 try
                 {
                     ArbPID = Convert.ToInt32(args[2]);
@@ -91,15 +91,15 @@ namespace Horse
                         Environment.Exit(0);
                     }
                 }
-                horseAccessor.Write(Number, (sbyte)(horseAccessor.ReadSByte(Number) + new Random().Next(1, 10)));//Увеличиваем счетчик бега
+                horseAccessor.Write(Number, (sbyte)(horseAccessor.ReadSByte(Number) + 1));//Увеличиваем счетчик бега
                 if (horseAccessor.ReadSByte(Number) >= EndPos)
                 {
                     Console.WriteLine("Я на фишине");
                     Console.ReadLine();
                     Environment.Exit(0);
                 }
-                Thread.Sleep(new Random().Next(300, 1000));
-                //mtx.ReleaseMutex();
+                //Thread.Sleep(new Random().Next(300, 1000));
+                mtx.ReleaseMutex();
             }
         }
     }
