@@ -13,8 +13,7 @@ namespace TestLab1
     {
         static void Main(string[] args)
         {
-            //string path = @"C:\Git\Lab1MP\";
-            string path = @"C:\Program Files (x86)\Labs\3_2sem\Lab1MP\";
+            string path = @"C:\Git\Lab1MP\";
             int horseCount;
             int len;
             while (true)
