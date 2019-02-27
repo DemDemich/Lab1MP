@@ -92,8 +92,13 @@ namespace Monitor
         {
             uint t;
             SetConsoleTextAttribute(ConsoleHandle, CharacterAttributes.FOREGROUND_GREEN);
-            cords.X = (short)(newPosLeft - 1);
-            WriteConsoleOutputCharacter(ConsoleHandle, "#", 1, cords, out t);
+            while (cords.X != newPosLeft)
+            {
+                WriteConsoleOutputCharacter(ConsoleHandle, "#", 1, cords, out t);
+                cords.X += 1;
+            }
+            //cords.X = (short)(newPosLeft - 1);
+            
         }
         public void testkvadrat()
         {

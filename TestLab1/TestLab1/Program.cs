@@ -81,7 +81,10 @@ namespace TestLab1
             Console.WriteLine(moni);
             var mmfArbitr = MemoryMappedFile.CreateOrOpen("horseMMF", horseCount + 1);
             var arbitrAccessor = mmfArbitr.CreateViewAccessor(0, 0);
-            arbitrAccessor.Write(0, (sbyte)horseCount);
+            sbyte[] sFill = new sbyte[horseCount];
+            for (int i = 0; i < horseCount; i++)
+                sFill[i] = 2;
+            arbitrAccessor.WriteArray(0, sFill, 0, sFill.Length);
             Semaphore ar = new Semaphore(0, horseCount+1, "ar");
             Mutex mtx = new Mutex(false, "mtx");
             ids = new List<int>();
@@ -119,7 +122,6 @@ namespace TestLab1
                 }
             Process.GetCurrentProcess().Close();
             Console.WriteLine(Process.GetCurrentProcess().Id);
-            
             Console.ReadKey();
         }
     }
